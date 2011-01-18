@@ -8,6 +8,9 @@ if USE_TINYMCE:
     import tinymce.settings
     TINYMCE_CONFIG = getattr(settings, 'CMS_PLUGIN_TEXT_TINYMCE_CONFIG', tinymce.settings.DEFAULT_CONFIG)
 
+
+USE_CKEDITOR = getattr(settings, 'CMS_USE_CKEDITOR', "ckeditor" in settings.INSTALLED_APPS)
+    
 WYM_TOOLS = ",\n".join([
     "{'name': 'Bold', 'title': 'Strong', 'css': 'wym_tools_strong'}",
     "{'name': 'Italic', 'title': 'Emphasis', 'css': 'wym_tools_emphasis'}",

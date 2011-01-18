@@ -7,6 +7,8 @@ from cms.plugins.text.widgets.wymeditor_widget import WYMEditor
 from cms.plugins.text.utils import plugin_tags_to_user_html
 from django.forms.fields import CharField
 from cms.plugins.text.settings import USE_TINYMCE
+from cms.plugins.text.settings import USE_CKEDITOR
+
 from django.conf import settings
 
 
@@ -25,6 +27,9 @@ class TextPlugin(CMSPluginBase):
         if USE_TINYMCE and "tinymce" in settings.INSTALLED_APPS:
             from cms.plugins.text.widgets.tinymce_widget import TinyMCEEditor
             return TinyMCEEditor(installed_plugins=plugins)
+        elif USE_CKEDITOR and "ckeditor" in settings.INSTALLED_APPS:
+            from ckeditor.widgets import CKEditorWidget
+            return CKEditorWidget(config_name='default')
         else:
             return WYMEditor(installed_plugins=plugins)
 
